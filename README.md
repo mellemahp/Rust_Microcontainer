@@ -46,12 +46,19 @@ ENTRYPOINT ["/hello_world"]--> ENTRYPOINT ["/<PROJECT_NAME>"]
 ```
 
 # Great! Now lets build your container!
-We are going to run the container with the name "rust/hello:v1" and have it serve on the port 8000 on the host
-machine. To do this run the following. First, build the container from your source directory containing the Dockerfile
+Everything is set up with docker compose and hosts on port 8000. Simply Run the following from the project root folder:
 ```
-docker build -t rust/hello:v1 .
+docker-compose up
 ```
-Now this will take a while. Once it's built you run the image with the following
+That's it! Now if you go to `localhost:8000` you should see a "Hello World" message
+
+# Tiny images! 
+If we take a look at the actual container size its only 4.77MB!!! That's fantastic. 
+```bash
+CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS              PORTS                    NAMES                                 SIZE
+fee29ebeaf94        rust_microcontainer_rest_endpoint   "/hello_world"      23 seconds ago      Up 21 seconds       0.0.0.0:8000->8000/tcp   rust_microcontainer_rest_endpoint_1   0B (virtual 4.77MB)
 ```
-docker container run -p 8000:8000 --rm rust/hello:v1
-```
+For comparison the container for an alpine [https://hub.docker.com/r/jazzdd/alpine-flask/](flask image) is: 
+
+
+
