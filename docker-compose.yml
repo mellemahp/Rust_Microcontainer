@@ -1,0 +1,8 @@
+version: '3.2'
+
+services: 
+    rest_endpoint: 
+        build: ./hello_world
+        ports: 
+            - "8000:8000"
+
