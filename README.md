@@ -50,7 +50,9 @@ Everything is set up with docker compose and hosts on port 8000. Simply Run the 
 ```
 docker-compose up
 ```
-That's it! Now if you go to `localhost:8000` you should see a "Hello World" message
+That's it! The first time you run this it will take quite a while, but after that if boots up very fast.
+
+Now if you go to `localhost:8000` you should see a "Hello World" message
 
 # Tiny images! 
 If we take a look at the actual container size its only 4.77MB!!! That's fantastic. 
@@ -58,7 +60,11 @@ If we take a look at the actual container size its only 4.77MB!!! That's fantast
 CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS              PORTS                    NAMES                                 SIZE
 fee29ebeaf94        rust_microcontainer_rest_endpoint   "/hello_world"      23 seconds ago      Up 21 seconds       0.0.0.0:8000->8000/tcp   rust_microcontainer_rest_endpoint_1   0B (virtual 4.77MB)
 ```
-For comparison the container for an alpine [https://hub.docker.com/r/jazzdd/alpine-flask/](flask image) is: 
-
+For comparison the container for an alpine [https://hub.docker.com/r/jazzdd/alpine-flask/](flask image) is 81.5MB: 
+```
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS               NAMES               SIZE
+70f3eb1d21f4        jazzdd/alpine-flask   "/entrypoint.sh"    29 seconds ago      Up 27 seconds       80/tcp              gracious_diffie     5B (virtual 81.5MB)
+```
+And this is with only a uWSGI server running in the flask image, no app.py is loaded. I expect that the difference only becomes more stark as the size of the applications grow.
 
 
